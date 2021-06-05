@@ -13,6 +13,20 @@ class CustomRouter {
         break;
       case SplashScreen.routeName:
         return SplashScreen.route();
+      case LoginScreen.routeName:
+        return LoginScreen.route();
+      case SignupScreen.routeName:
+        return SignupScreen.route();
+      case NavScreen.routeName:
+        return NavScreen.route();
+      default:
+        return _errorRoute();
+    }
+  }
+
+  static Route onGenerateNestedRoute(RouteSettings settings) {
+    print('Nested Route ${settings.name}');
+    switch (settings.name) {
       default:
         return _errorRoute();
     }
