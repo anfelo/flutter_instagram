@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_instagram/blocs/blocs.dart';
 import 'package:flutter_instagram/config/custom_router.dart';
 import 'package:flutter_instagram/enums/enums.dart';
+import 'package:flutter_instagram/repositories/repositories.dart';
+import 'package:flutter_instagram/screens/profile/bloc/profile_bloc.dart';
 import 'package:flutter_instagram/screens/screens.dart';
 
 class TabNavigator extends StatelessWidget {
@@ -52,7 +56,17 @@ class TabNavigator extends StatelessWidget {
         return NotificationsScreen();
         break;
       case BottomNavItem.profile:
-        return ProfileScreen();
+        return BlocProvider(
+          create: (_) => ProfileBloc(
+            userRepository: context.read<UserRepository>(),
+            authBloc: context.read<AuthBloc>(),
+          )..add(
+              ProfileLoadUser(
+                userId: context.read<AuthBloc>().state.user.uid,
+              ),
+            ),
+          child: ProfileScreen(),
+        );
         break;
       default:
         return Scaffold();
