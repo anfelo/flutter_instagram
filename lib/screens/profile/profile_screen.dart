@@ -24,7 +24,8 @@ class ProfileScreen extends StatefulWidget {
           userRepository: context.read<UserRepository>(),
           postRepository: context.read<PostRepository>(),
           authBloc: context.read<AuthBloc>(),
-        ),
+        )..add(ProfileLoadUser(userId: args.userId)),
+        child: ProfileScreen(),
       ),
     );
   }
@@ -173,7 +174,10 @@ class _ProfileScreenState extends State<ProfileScreen>
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
                           final post = state.posts[index];
-                          return PostView(post: post);
+                          return PostView(
+                            post: post,
+                            isLiked: false,
+                          );
                         },
                         childCount: state.posts.length,
                       ),
