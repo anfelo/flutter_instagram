@@ -12,7 +12,7 @@ class ProfileState extends Equatable {
   final List<Post> posts;
   final bool isCurrentUser;
   final bool isGridView;
-  final isFollowing;
+  final bool isFollowing;
   final ProfileStatus status;
   final Failure failure;
 

@@ -33,3 +33,7 @@ class ProfileUpdatePosts extends ProfileEvent {
   @override
   List<Object> get props => [posts];
 }
+
+class ProfileUnfollowUser extends ProfileEvent {}
+
+class ProfileFollowUser extends ProfileEvent {}
